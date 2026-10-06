@@ -1,0 +1,49 @@
+name: Planneria
+options:
+  bundleIdPrefix: com.lucasleria
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "0.0.1"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  Planneria:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+    info:
+      path: Config/Info.plist
+      properties:
+        CFBundleDisplayName: Planneria
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+    settings:
+      base:
+        # Bundle ID definitivo. NÃO ALTERAR depois de usar dados reais.
+        PRODUCT_BUNDLE_IDENTIFIER: com.lucasleria.planneria
+  PlanneriaTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests
+    dependencies:
+      - target: Planneria
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.lucasleria.planneria.tests
+schemes:
+  Planneria:
+    build:
+      targets:
+        Planneria: all
+    test:
+      targets:
+        - PlanneriaTests
